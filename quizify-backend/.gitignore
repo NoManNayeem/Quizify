@@ -1,0 +1,29 @@
+/target
+# Rust-specific ignores
+target/                 # Compiled binary directory
+**/*.rs.bk              # Backup files
+
+# Build and dependencies
+Cargo.lock              # Lock file (can be excluded for libraries but include for apps)
+*.dSYM                  # macOS debugging files
+*.pdb                   # Windows debugging files
+*.ilk                   # Incremental linker files
+*.obj                   # Object files
+*.lib                   # Library files
+*.so                    # Shared object files (Linux/macOS)
+*.dll                   # Dynamic Link Library files (Windows)
+
+# Logs
+*.log                   # Log files
+
+# Environment and secrets
+.env                    # Environment variable file
+
+# Editor/IDE-specific ignores
+.idea/                  # JetBrains IDEs (e.g., CLion, IntelliJ)
+*.vscode/               # VS Code workspace settings
+*.swp                   # Swap files (e.g., Vim)
+*.DS_Store              # macOS metadata files
+*.log                   # Log files
+*.out                   # Output files
+*.tmp                   # Temporary files

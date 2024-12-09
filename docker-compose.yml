@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./quizify-backend
+      dockerfile: Dockerfile
+    container_name: quizify-backend
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://quizify:quizify123@db/quizify
+      RUST_LOG: info
+    depends_on:
+      - db
+    volumes:
+      - ./quizify-backend/.env:/app/.env:ro # Bind mount the .env file
+    networks:
+      - quizify-network
+
+  frontend:
+    build:
+      context: ./quizify-frontend
+      dockerfile: Dockerfile
+    container_name: quizify-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      REACT_APP_API_URL: http://quizify-backend:8080
+    networks:
+      - quizify-network
+
+  db:
+    image: postgres:15
+    container_name: quizify-db
+    environment:
+      POSTGRES_USER: quizify
+      POSTGRES_PASSWORD: quizify123
+      POSTGRES_DB: quizify
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - quizify-network
+
+volumes:
+  postgres_data:
+
+networks:
+  quizify-network:
