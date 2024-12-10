@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   backend:
     build:
@@ -13,7 +12,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./quizify-backend/.env:/app/.env:ro # Bind mount the .env file
+      - ./quizify-backend/.env:/app/.env:ro
     networks:
       - quizify-network
 
@@ -26,8 +25,6 @@ services:
       - "3000:80"
     depends_on:
       - backend
-    environment:
-      REACT_APP_API_URL: http://quizify-backend:8080
     networks:
       - quizify-network
 

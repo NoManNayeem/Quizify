@@ -4,15 +4,16 @@ const Home = () => {
   const [apiStatus, setApiStatus] = useState('Checking...');
 
   useEffect(() => {
-    // Fetch the backend health endpoint
-    fetch(`${process.env.REACT_APP_API_URL}/health`)
+    const apiUrl = '/api'; // Use the proxy path configured in Nginx
+
+    fetch(`${apiUrl}/health`)
       .then((response) => {
         if (response.ok) {
-          return response.text();
+          return response.json(); // Assuming backend returns JSON for health check
         }
         throw new Error('Failed to connect to backend');
       })
-      .then((data) => setApiStatus(data))
+      .then((data) => setApiStatus(data.status || 'Healthy'))
       .catch((error) => setApiStatus(error.message));
   }, []);
 

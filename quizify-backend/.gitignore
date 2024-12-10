@@ -27,3 +27,22 @@ Cargo.lock              # Lock file (can be excluded for libraries but include f
 *.log                   # Log files
 *.out                   # Output files
 *.tmp                   # Temporary files
+# Target directory for compiled files
+/target/
+
+# Build artifacts and lock files
+/Cargo.lock
+
+# Logs
+*.log
+
+# dotenv environment files
+.env
+
+# Debugging files
+*.rs.bk
+*.rs.bkp
+
+# OS-generated files
+.DS_Store
+Thumbs.db
